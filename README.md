@@ -1,5 +1,5 @@
 # Merkle Tech Test
 
-Please go into 'lib' to find my answers.
+Please go into 'src' to find my answers.
 
 Thanks
