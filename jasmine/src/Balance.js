@@ -3,13 +3,21 @@ var balance = (openingSum, interestRate, taxFreeLimit, taxRate, numMonths) => {
 
   for (i = 1; i <= numMonths; i++) {
     if (currentSum - taxFreeLimit <= 0) {
-      currentSum += currentSum * (interestRate / 100);
+      currentSum += interest(currentSum, interestRate);
     } else {
       currentSum +=
-        currentSum * (interestRate / 100) -
-        (currentSum - taxFreeLimit) * (taxRate / 100);
+        interest(currentSum, interestRate) -
+        tax(currentSum, taxFreeLimit, taxRate);
     }
   }
 
   return currentSum;
+};
+
+var interest = (currentSum, interestRate) => {
+  return currentSum * (interestRate / 100);
+};
+
+var tax = (currentSum, taxFreeLimit, taxRate) => {
+  return (currentSum - taxFreeLimit) * (taxRate / 100);
 };
