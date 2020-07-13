@@ -25,15 +25,17 @@ var longestSequence = (letters) => {
         }
       }
     });
-  return letterSequences
-    .sort((a, b) => {
-      return Object.keys(a)[0] > Object.keys(b)[0]
-        ? -1
-        : Object.keys(a)[0] < Object.keys(b)[0]
-        ? 1
-        : 0;
-    })
-    .reduce((a, b) => {
-      return Object.values(a)[0] > Object.values(b)[0] ? a : b;
-    });
+  return sortAlphabetically(letterSequences).reduce((a, b) => {
+    return Object.values(a)[0] > Object.values(b)[0] ? a : b;
+  });
+};
+
+var sortAlphabetically = (arr) => {
+  return arr.sort((a, b) => {
+    return Object.keys(a)[0] > Object.keys(b)[0]
+      ? -1
+      : Object.keys(a)[0] < Object.keys(b)[0]
+      ? 1
+      : 0;
+  });
 };
