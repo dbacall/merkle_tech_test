@@ -4,16 +4,16 @@ var longestSequence = (letters) => {
   letters
     .toLowerCase()
     .split('')
-    .forEach((letter, i) => {
-      if (i === 0) {
+    .forEach((letter, index) => {
+      if (index === 0) {
         currentSequence[letter] = 1;
-      } else if (!currentSequence[letter] && i !== letters.length - 1) {
+      } else if (!currentSequence[letter] && index !== letters.length - 1) {
         letterSequences.push(currentSequence);
         currentSequence = {};
         currentSequence[letter] = 1;
-      } else if (i !== letters.length - 1) {
+      } else if (index !== letters.length - 1) {
         currentSequence[letter] += 1;
-      } else if (i === letters.length - 1) {
+      } else if (index === letters.length - 1) {
         if (!currentSequence[letter]) {
           letterSequences.push(currentSequence);
           currentSequence = {};
