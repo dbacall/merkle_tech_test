@@ -4,12 +4,9 @@ var secondLowest = (numbers) => {
     frequencies[num] ? (frequencies[num] += 1) : (frequencies[num] = 1);
   });
 
-  var min = Math.min.apply(null, Object.values(frequencies).filter(Boolean));
+  var min = minOfArray(Object.values(frequencies));
 
-  var secondMin = Math.min.apply(
-    null,
-    Object.values(frequencies).filter((n) => n != min)
-  );
+  var secondMin = secondMinOfArray(Object.values(frequencies), min);
 
   var indexOfSecondMin = Object.values(frequencies).indexOf(secondMin);
 
@@ -21,21 +18,15 @@ var secondLowest = (numbers) => {
       return parseInt(num);
     });
 
-  var minKey = Math.min.apply(null, arrayOfSecondMins.filter(Boolean));
+  var minKey = minOfArray(arrayOfSecondMins);
 
-  var secondMinKey = Math.min.apply(
-    null,
-    arrayOfSecondMins.filter((n) => n != minKey)
-  );
+  var secondMinKey = secondMinOfArray(arrayOfSecondMins, minKey);
 
   var indexOfSecondMinKey = arrayOfSecondMins.indexOf(secondMinKey);
 
-  var minWithNoRepeats = Math.min.apply(null, numbers.filter(Boolean));
+  var minWithNoRepeats = minOfArray(numbers);
 
-  var secondMinWithNoRepeats = Math.min.apply(
-    null,
-    numbers.filter((n) => n != minWithNoRepeats)
-  );
+  var secondMinWithNoRepeats = secondMinOfArray(numbers, minWithNoRepeats);
 
   var indexOfSecondMinWithNoRepeats = numbers.indexOf(secondMinWithNoRepeats);
 
@@ -46,4 +37,15 @@ var secondLowest = (numbers) => {
   } else {
     return numbers[indexOfSecondMinWithNoRepeats];
   }
+};
+
+var minOfArray = (arr) => {
+  return Math.min.apply(null, arr.filter(Boolean));
+};
+
+var secondMinOfArray = (arr, min) => {
+  return Math.min.apply(
+    null,
+    arr.filter((n) => n != min)
+  );
 };
